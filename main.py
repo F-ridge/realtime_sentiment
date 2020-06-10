@@ -46,11 +46,15 @@ def main():
         # print ("elapsed_time:{:.3f}".format(elapsed_time) + "[sec]")
 
 if __name__ == '__main__':
-    count = 0
-    while True:
-        print(count)
+    once = 1
+    if once:
         main()
-        count+=1
-        time.sleep(5)
-        if count == 3:
-            break
+    else:
+        count = 0
+        while True:
+            print(count)
+            main()
+            count+=1
+            time.sleep(5)
+            if count == 3:
+                break
