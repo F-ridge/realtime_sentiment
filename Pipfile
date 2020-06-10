@@ -9,6 +9,7 @@ verify_ssl = true
 allennlp = "*"
 pyknp = "*"
 emoji = "*"
+neologdn = "*"
 
 [requires]
 python_version = "3.7"
