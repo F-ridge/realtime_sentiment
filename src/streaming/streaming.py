@@ -6,7 +6,7 @@ from realtime_sentiment.lib.spread_sheet import (
     get_sheet_as_df, update_values_by_range)
 
 
-def streaming():
+def input():
     service = google_spreadsheet_auth()
     target_jsonl = get_new_comments(service)
     # with open(f"{save_dir('streaming/example')}/output.jsonl", mode='w') as j:
