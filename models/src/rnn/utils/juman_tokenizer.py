@@ -3,8 +3,11 @@ from allennlp.data.tokenizers import Token, Tokenizer
 from overrides import overrides
 
 import re
+from neologdn import normalize
+import emoji_conversion as em 
 
 import torch
+
 
 @Tokenizer.register("juman_tokenizer")
 class JumanTokenizer(Tokenizer):
@@ -17,10 +20,17 @@ class JumanTokenizer(Tokenizer):
         '''
         Jumanに入れる前のツイートの整形
         '''
-
-        ''.join(c for c in text if c not in emoji.UNICODE_EMOJI)
+         # 絵文字を置換
+        text = emoji.demojize(text, delimiters=(" "," "))
+        for en, jp in em.conversion_dic.items():
+            text = text.replace(en, jp)
+            
+        text = text.lower() # 大文字→小文字
+        text = normalize(text) # 正規化(表記揺れの是正)
+        
+        ''.join(c for c in text if c not in emoji.UNICODE_EMOJI) # 置換できていない絵文字は消去
         text=re.sub(r'https?://[\w/:%#\$&\?\(\)~\.=\+\-…]+', "", text)
-        text=re.sub(r'[!-@]', "", text) # 半角記号,数字,英字
+        text=re.sub(r'[!-~]', "", text) # 半角記号,数字,英字
         text=re.sub(r'[︰-＠]', "", text) # 全角記号
         text=re.sub('\n', "", text) # 改行文字
         text=re.sub(' ', "", text) # 必須
@@ -45,5 +55,3 @@ class JumanTokenizer(Tokenizer):
             return None
 
         return [Token(str(token)) for token in tokens]
-
-
