@@ -2,6 +2,8 @@ from pyknp import Juman
 from allennlp.data.tokenizers import Token
 import re
 import emoji
+from neologdn import normalize
+import emoji_conversion as em
 
 from overrides import overrides
 from typing import List
@@ -38,8 +40,15 @@ class MeCabWordSplitter(WordSplitter):
         '''
         Jumanに入れる前のツイートの整形
         '''
+        # 絵文字を置換
+        text = emoji.demojize(text, delimiters=(" "," "))
+        for en, jp in em.conversion_dic.items():
+            text = text.replace(en, jp)
 
-        ''.join(c for c in text if c not in emoji.UNICODE_EMOJI)
+        text = text.lower() # 大文字→小文字
+        text = normalize(text) # 正規化(表記揺れの是正)
+
+        ''.join(c for c in text if c not in emoji.UNICODE_EMOJI) # 置換できていない絵文字は消去
         text=re.sub(r'https?://[\w/:%#\$&\?\(\)~\.=\+\-…]+', "", text)
         text=re.sub(r'[!-~]', "", text) # 半角記号,数字,英字
         text=re.sub(r'[︰-＠]', "", text) # 全角記号

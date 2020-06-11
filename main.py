@@ -55,6 +55,6 @@ if __name__ == '__main__':
             print(count)
             main()
             count+=1
-            time.sleep(5)
-            if count == 3:
+            # time.sleep(5)
+            if count == 10:
                 break
