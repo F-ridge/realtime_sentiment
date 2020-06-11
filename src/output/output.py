@@ -1,12 +1,13 @@
+import os
 import yaml
 import pandas as pd
 from realtime_sentiment.lib.auth import google_spreadsheet_auth
 from realtime_sentiment.lib.spread_sheet import update_values_by_range
 
 
-def main():
+def output():
     service = google_spreadsheet_auth()
-    predict_path = 'realtime_sentiment/src/output/example/predict.jsonl'
+    predict_path = os.path.join(os.path.dirname(__file__),'../../data/predict.jsonl')
     with open(predict_path) as jsonl:
         predict_jsonl = jsonl.read()
     post_labels(service, predict_jsonl)
@@ -14,7 +15,7 @@ def main():
 
 def post_labels(
         service, predict_jsonl,
-        config_path='realtime_sentiment/config.yml',
+        config_path=os.path.join(os.path.dirname(__file__),'../../config.yml'),
         sheet_name='シート1'):
     with open(config_path, 'r', encoding='UTF-8') as yml:
         config = yaml.safe_load(yml)
@@ -28,6 +29,3 @@ def post_labels(
         'C', row_start, 'C', row_end,
         majorDimension=None, sheet_name='シート1')
 
-
-if __name__ == '__main__':
-    main()

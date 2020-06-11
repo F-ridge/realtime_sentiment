@@ -5,8 +5,8 @@ from google_auth_oauthlib.flow import InstalledAppFlow
 
 
 def google_spreadsheet_auth(
-        credentials_path='realtime_sentiment/credentials.json',
-        token_path='realtime_sentiment/token.pickle'):
+        credentials_path=os.path.join(os.path.dirname(__file__),'../credentials.json'), 
+        token_path=os.path.join(os.path.dirname(__file__),'../token.pickle')):
     SCOPES = 'https://www.googleapis.com/auth/spreadsheets'
     if os.path.exists(token_path):
         with open(token_path, 'rb') as token:
