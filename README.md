@@ -22,3 +22,10 @@ Meip experiment 2020 group 5
 ※ このステップで生成される `token.pickle` や `credentials.json` は誰にも渡らないように管理すること（認証したアカウントと同じ権限をもつので）。
 
 ※ `realtime_sentiment` 直下にこれらの名前で入っていれば、 `.gitignore` で弾いてくれるのでコミットに勝手に含まれることはない。
+
+## cloneしてから実行するまでの手順
+1. `pipenv install`を実行する
+2. 上記の手順で認証を済ませる(出力用スプレッドシートのテンプレートはdriveにある)
+3. driveにある`model.tar.gz`を`realtime_sentiment/models/serials/xxlarge-bin/model.tar.gz`に保存
+4. グーグルフォームを使う場合はdriveの入力用フォームのテンプレートを複製し、スプレッドシートと連携させる(参考: https://www.infact1.co.jp/staff_blog/webmarketing/43713/)。さらに`spreadsheet_text_clumn.py`を実行し、出力用スプレッドシートの`text`の列に`spreadsheet_text_clumn.txt`をコピペする。ただし、`spreadsheet_text_clumn.py`の`シートID`の部分はフォームと連携しているスプレッドシートのシートIDに書き換えて使う。
+5. `pipenv shell`を実行して仮想環境に入り、`python main.py`を実行する。ただしカレントディレクトリが`realtime_sentiment`の状態で実行する。
