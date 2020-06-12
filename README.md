@@ -28,6 +28,6 @@ Meip experiment 2020 group 5
 2. 上記の手順で認証を済ませる(出力用スプレッドシートのテンプレートはドライブにある)。
 3. ドライブにある`model.tar.gz`を`realtime_sentiment/models/serials/xxlarge-bin/model.tar.gz`に保存する。
 4. スプレッドシートに入力する。
-- グーグルフォームを使う場合：ドライブの入力用フォームのテンプレートを複製し、スプレッドシートと連携させる(参考: https://www.infact1.co.jp/staff_blog/webmarketing/43713/ )。さらに`spreadsheet_text_clumn.py`を実行し、出力用スプレッドシートの`text`の列に`spreadsheet_text_clumn.txt`をコピペする。ただし、`spreadsheet_text_clumn.py`の`シートID`の部分はフォームと連携しているスプレッドシートのシートIDに書き換えて使う。
+- グーグルフォームを使う場合：ドライブの入力用フォームのテンプレートを複製し、スプレッドシートと連携させる(参考: https://support.google.com/docs/answer/2917686?hl=ja )。さらに`spreadsheet_text_clumn.py`を実行し、出力用スプレッドシートの`text`の列に`spreadsheet_text_clumn.txt`をコピペする。ただし、`spreadsheet_text_clumn.py`の`シートID`の部分はフォームと連携しているスプレッドシートのシートIDに書き換えて使う。
 - グーグルフォームを使わない場合：出力用スプレッドシートの`text`列に直接入力する。
 5. `pipenv shell`を実行して仮想環境に入り、`python main.py`を実行する。ただしカレントディレクトリが`realtime_sentiment`の状態で実行する。
