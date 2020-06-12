@@ -1,6 +1,7 @@
 credentials.json
 config.yml
 token.pickle
+spreadsheet_clumn_B.txt
 
 *.jsonl
 output/

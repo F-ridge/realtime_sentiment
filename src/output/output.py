@@ -5,8 +5,9 @@ from realtime_sentiment.lib.auth import google_spreadsheet_auth
 from realtime_sentiment.lib.spread_sheet import update_values_by_range
 
 
-def output():
-    service = google_spreadsheet_auth()
+def output(service):
+    # service = google_spreadsheet_auth()
+    service = service
     predict_path = os.path.join(os.path.dirname(__file__),'../../data/predict.jsonl')
     with open(predict_path) as jsonl:
         predict_jsonl = jsonl.read()
